@@ -1,6 +1,6 @@
 {
   "name": "rc-config",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Load runtime configuration",
   "homepage": "https://github.com/codejamninja/rc-config",
   "bugs": {
@@ -27,10 +27,11 @@
     "lint": "eslint ./",
     "lint:fix": "eslint --fix ./",
     "prepublish": "npm run build",
-    "test": "npm run lint && jest"
+    "test": "npm run lint && jest",
+    "test:reset": "jest --clearCache && npm run test"
   },
   "dependencies": {
-    "load-conf": "0.0.2",
+    "load-conf": "0.0.3",
     "lodash": "^4.17.5"
   },
   "devDependencies": {
