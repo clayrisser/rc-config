@@ -15,7 +15,7 @@ export default function rcConfig({
   if (!_.isArray(ignore)) ignore = [ignore];
   order = _.uniq([
     ...order,
-    ...['package.json', 'yaml', 'yml', 'json', 'js', 'rc']
+    ...['rc', 'js', 'json', 'yml', 'yaml', 'package.json']
   ]);
   if (count > order.length) return config;
   if (!type) {
