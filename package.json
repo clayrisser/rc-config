@@ -1,6 +1,6 @@
 {
   "name": "rc-config",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Load runtime configuration",
   "homepage": "https://github.com/codejamninja/rc-config",
   "bugs": {
@@ -31,7 +31,7 @@
     "test:reset": "jest --clearCache && npm run test"
   },
   "dependencies": {
-    "load-conf": "0.0.3",
+    "load-conf": "0.0.5",
     "lodash": "^4.17.5"
   },
   "devDependencies": {
