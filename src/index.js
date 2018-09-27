@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import loadConf from 'load-conf';
 import path from 'path';
+import pkgDir from 'pkg-dir';
 
 export default function rcConfig({
   config = {},
@@ -9,7 +10,8 @@ export default function rcConfig({
   name,
   order = [],
   strategy = 'first',
-  type
+  type,
+  cwd = pkgDir.sync(process.cwd())
 }) {
   if (!_.isArray(order)) order = [order];
   if (!_.isArray(ignore)) ignore = [ignore];
@@ -33,23 +35,35 @@ export default function rcConfig({
   switch (type) {
     case 'yaml':
       if (!_.includes(ignore, 'yaml')) {
-        currentConfig = loadConf(path.resolve(`.${name}rc.yaml`), null, 'yaml');
+        currentConfig = loadConf(
+          path.resolve(cwd, `.${name}rc.yaml`),
+          null,
+          'yaml'
+        );
       }
       break;
     case 'yml':
       if (!_.includes(ignore, 'yml')) {
-        currentConfig = loadConf(path.resolve(`.${name}rc.yml`), null, 'yaml');
+        currentConfig = loadConf(
+          path.resolve(cwd, `.${name}rc.yml`),
+          null,
+          'yaml'
+        );
       }
       break;
     case 'json':
       if (!_.includes(ignore, 'json')) {
-        currentConfig = loadConf(path.resolve(`.${name}rc.json`), null, 'json');
+        currentConfig = loadConf(
+          path.resolve(cwd, `.${name}rc.json`),
+          null,
+          'json'
+        );
       }
       break;
     case 'js':
       if (!_.includes(ignore, 'js')) {
         currentConfig = loadConf(
-          path.resolve(`.${name}rc.js`),
+          path.resolve(cwd, `.${name}rc.js`),
           null,
           'javascript'
         );
@@ -57,12 +71,12 @@ export default function rcConfig({
       break;
     case 'rc':
       if (!_.includes(ignore, 'rc')) {
-        currentConfig = loadConf(path.resolve(`.${name}rc`), null);
+        currentConfig = loadConf(path.resolve(cwd, `.${name}rc`), null);
       }
       break;
     case 'package.json':
       if (!_.includes(ignore, 'package.json')) {
-        currentConfig = loadConf(path.resolve('package.json'), {}, 'json')[
+        currentConfig = loadConf(path.resolve(cwd, 'package.json'), {}, 'json')[
           name
         ];
       }
